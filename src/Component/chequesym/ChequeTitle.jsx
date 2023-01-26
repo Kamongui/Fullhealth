@@ -1,5 +1,5 @@
 import React from 'react';
-import Printpage from '../../Component/Printpage';
+import Printpage from '../Printpage';
 import List from '../../Component/List'
 import {Table} from '@mui/material';
 import {TableBody} from '@mui/material';

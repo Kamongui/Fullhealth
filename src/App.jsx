@@ -3,7 +3,7 @@ import Header from './Component/Header'
 import Home from './page/Home'
 import Cheque from './page/cheque/Cheque'
 import DragList from './page/drag/DragList'
-import NewCheque from './page/NewCheque'
+import Cheque from './page/Cheque'
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
         <Route path='/' element={<Home/>} />
         <Route path='/cheque' element={<Cheque/>} />
         <Route path='/drag' element={<DragList/>} />
-        <Route path='/newCheque' element={<NewCheque/>} />
+        <Route path='/cheque' element={<Cheque/>} />
       </Routes>
     </>
   )

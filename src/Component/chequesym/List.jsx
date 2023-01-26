@@ -1,9 +1,9 @@
 import React from 'react';
-import {TableCell} from '@mui/material';
-import {TableRow} from '@mui/material';
+import { TableCell } from '@mui/material';
+import { TableRow } from '@mui/material';
 import { useState } from 'react';
-import { useChequecontext } from '../Context/ChequeContext';
-import { updateCheque, deleteCheque } from '../controller/ChequeController' 
+import { useChequecontext } from '../../Context/ChequeContext';
+import { updateCheque, deleteCheque } from '../../controller/ChequeController' 
 
  const List = ({ id, Date, To, Amount }) => {
   const {data, setData, date, setDate, to, setTo, amount, setAmount, setPrint} = useChequecontext()

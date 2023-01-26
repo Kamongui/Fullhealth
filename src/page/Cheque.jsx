@@ -2,8 +2,8 @@ import React, { useEffect, useReducer } from 'react'
 import { getChequeData } from '../controller/ChequeController'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useState } from 'react';
-import Cheque from './cheque/Cheque';
-import ChequeTitle from './cheque/ChequeTitle'
+import AddCheque from '../Component/chequesym/AddCheque';
+import ChequeTitle from '../Component/chequesym/ChequeTitle'
 
 const ACTION = {OPSTFORM:'opstform', OPCHEQUEPART:'opchequePart',CLCHEQUEPART:'clchequePart'}
 
@@ -57,7 +57,7 @@ const NewCheque = () => {
         {(state.chequePart)?
           <>
             <div className='chequecomponent'>
-              <Cheque />
+              <AddCheque />
               <button onClick={()=>dispatch({type:ACTION.CLCHEQUEPART})}>Done</button>
             </div>
           </>:
@@ -87,4 +87,4 @@ const NewCheque = () => {
   )
 }
 
-export default NewCheque
+export default Cheque
