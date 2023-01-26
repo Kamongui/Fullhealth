@@ -1,6 +1,6 @@
 import React from 'react';
 import Printpage from '../Printpage';
-import List from '../../Component/List'
+import List from './List'
 import {Table} from '@mui/material';
 import {TableBody} from '@mui/material';
 import {TableCell} from '@mui/material';

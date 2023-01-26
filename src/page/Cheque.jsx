@@ -21,7 +21,7 @@ const reducer = (state,action) => {
 
 }
 
-const NewCheque = () => {
+const Cheque = () => {
   const [state,dispatch] = useReducer(
     reducer,
     {
