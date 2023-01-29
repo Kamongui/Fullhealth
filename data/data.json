@@ -1,35 +1,58 @@
 {
   "data": [
     {
-      "id": 5,
-      "Date": "2023-01-18",
-      "To": "Tom",
-      "Amount": ""
-    },
-    {
       "id": 6,
       "Date": "2023-01-26",
-      "To": "Jack",
+      "Payee": "Jack",
       "Amount": "666"
     },
     {
       "id": 7,
       "Date": "2023-02-11",
-      "To": "Tom",
+      "Payee": "Tom",
       "Amount": "14"
+    },
+    {
+      "id": 8,
+      "Date": "2023-01-26",
+      "Payee": "Jack",
+      "Amount": "666"
     }
   ],
-  "drag":[
+  "drag": [
     {
-      "dragId":1,
-      "DragName":"Drag1",
-      "Price":500
+      "id": 1,
+      "DragName": "Drag1",
+      "Price": 100
+    },
+    {
+      "id": 2,
+      "DragName": "Drag2",
+      "Price": 200
+    },
+    {
+      "id": 3,
+      "DragName": "Drag3",
+      "Price": 300
+    },
+    {
+      "id": 4,
+      "DragName": "Drag4",
+      "Price": 400
     }
   ],
-  "suppiler":[
+  "suppiler": [
     {
-      "supplierId":1,
-      "SupplierName":"Company1"
+      "id": 1,
+      "SupplierName": "Company1"
+    },
+    {
+      "id": 2,
+      "SupplierName": "Company2"
+    },
+    {
+      "id": 3,
+      "SupplierName": "Company3"
     }
   ]
 }

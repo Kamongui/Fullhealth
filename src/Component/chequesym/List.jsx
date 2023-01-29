@@ -3,12 +3,12 @@ import { TableCell } from '@mui/material';
 import { TableRow } from '@mui/material';
 import { useState } from 'react';
 import { useChequecontext } from '../../Context/ChequeContext';
-import { updateCheque, deleteCheque } from '../../controller/ChequeController' 
+import { updateCheque, deleteCheque } from '../../controller/DataController' 
 
- const List = ({ id, Date, To, Amount }) => {
+ const List = ({ id, Date, Payee, Amount }) => {
   const {data, setData, date, setDate, to, setTo, amount, setAmount, setPrint} = useChequecontext()
   const [edit, setEdit] = useState(false)
-  const [dis, setDis] = useState(true)
+  const [activedel, setActivedel] = useState(false)
   
   const doneBtn = async () => {
     const newdata = {"id":id,"Date":date,"To":(to === '')?To:to,"Amount":amount}
@@ -26,7 +26,15 @@ import { updateCheque, deleteCheque } from '../../controller/ChequeController'
       console.log(err)
     }
   }
-
+  const editBtn = () => {
+    setEdit(true)
+    setDate(Date)
+    setTo(Payee)
+    setAmount(Amount)
+  }
+  const cancelBtn = () => {
+    setEdit(false)
+  }
   const deleteBtn = async () =>{
     try{
       await deleteCheque(id)
@@ -36,7 +44,6 @@ import { updateCheque, deleteCheque } from '../../controller/ChequeController'
       console.log(err)
     }
   }
-
   const previewBtn = () => {
     setPrint(id)
   }
@@ -49,36 +56,43 @@ import { updateCheque, deleteCheque } from '../../controller/ChequeController'
       <TableCell component="th" scope="row">
         {id}
       </TableCell>
-      <TableCell align="right">
+      <TableCell align="center">
+        Status
+        {/* {(!edit)?
+          Date:
+          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        } */}
+      </TableCell>
+      <TableCell align="center">
         {(!edit)?
           Date:
-          <input type="date" value={(date === '')?data[data.findIndex(item=>item.id === id)].Date:date} onChange={(e) => setDate(e.target.value)} />
+          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
         }
       </TableCell>
-      <TableCell align="right">
+      <TableCell align="center">
       {(!edit)?
-          To:
-          <input type="text" value={(to === '')?data[data.findIndex(item=>item.id === id)].To:to} onChange={(e) => setTo(e.target.value)} />
+          Payee:
+          <input type="text" value={to} onChange={(e) => setTo(e.target.value)} />
         }
       </TableCell>
-      <TableCell align="right">
+      <TableCell align="center">
       {(!edit)?
           Amount:
-          <input type="text" value={(amount === '')?data[data.findIndex(item=>item.id === id)].Amount:amount} onChange={(e) => setAmount(e.target.value)} />
+          <input type="text" value={amount} onChange={(e) => setAmount(e.target.value)} />
         }
       </TableCell>
-      <TableCell align="right">
+      <TableCell align="center">
         {(!edit)?
-          <button onClick={()=>setEdit(true)}>Edit</button>:
-          <button onClick={doneBtn}>Done</button>}
+          <button onClick={editBtn}>Edit</button>:
+          <div>
+            <button onClick={doneBtn}>Done</button>
+            <button onClick={cancelBtn}>Cancel</button>
+          </div>}
       </TableCell>
-      <TableCell align="right">
-        <input type="checkbox"/>
+      <TableCell align="center">
+      <input type="checkbox" onClick={() => setActivedel(!activedel)}/><button disabled={!activedel} onClick={deleteBtn}>Delete</button>
       </TableCell>
-      <TableCell align="right">
-        <button>Delete</button>
-      </TableCell>
-      <TableCell align="right">
+      <TableCell align="center">
         <button>Pre-view</button>
       </TableCell>
     </TableRow>

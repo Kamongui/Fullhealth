@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
-import { useChequecontext } from '../../Context/ChequeContext'
-import { createNewcheque } from '../../controller/ChequeController'
+import { useChequecontext } from '../../../Context/ChequeContext'
+import { createNewcheque } from '../../../controller/DataController'
 
 const Cheque = () => {
   const idRef = useRef()

@@ -1,24 +1,25 @@
 import React, { useEffect, useReducer } from 'react'
-import { getChequeData } from '../controller/ChequeController'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { useState } from 'react';
-import AddCheque from '../Component/chequesym/AddCheque';
 import ChequeTitle from '../Component/chequesym/ChequeTitle'
+import { useChequecontext } from '../Context/ChequeContext'
+import DragList from '../Component/chequesym/DragList'
 
-const ACTION = {OPSTFORM:'opstform', OPCHEQUEPART:'opchequePart',CLCHEQUEPART:'clchequePart'}
+const ACTION = {ADDDRAG:'adddarg', ADDCHEQUE:'addcheque',BACKTODRAG:'backtodrag',CANCEL:'cancel'}
 
 const reducer = (state,action) => {
+  //op = open, cl = close
   switch (action.type){
-    case 'opstform':
-      return {...state,stForm:true}
-    case 'opchequePart':
-      return {...state,chequePart:true}
-    case 'clchequePart':
-      return {...state,chequePart:false}
+    case 'adddarg':
+      return {...state,adddrag:true}
+    case 'addcheque':
+      return {...state,addcheque:true}
+    case 'backtodrag':
+      return {...state,addcheque:false}
+    case 'cancel':
+      return {...state,adddrag:false,addcheque:false}
     default:
       return {...state}
   }
-
 }
 
 const Cheque = () => {
@@ -27,43 +28,35 @@ const Cheque = () => {
     {
       count:0,
       edit:false,
-      stForm:false,
-      ndForm:false,
-      chequePart:false
-    })
-  
+      adddrag:false,
+      addcheque:false,
+    }
+  )
 
-  // const [stForm, setStForm] = useState(false);
-  const [ndForm, setNdForm] = useState(false);
-  
+  const { dragdata,totalPrice } = useChequecontext()
 
-
-  //get data when re-render the page
-  useEffect(()=>{
-    const getData = async () => {
-      try{
-        const response = await getChequeData();
-        // setData(response.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getData();
-  },[])
-  
   return (
     <>
-      <section className='chequeheader'>
-        {(state.chequePart)?
-          <>
-            <div className='chequecomponent'>
-              <AddCheque />
-              <button onClick={()=>dispatch({type:ACTION.CLCHEQUEPART})}>Done</button>
+      {(state.adddrag)?
+        <div className='chequecomponent'>
+          {dragdata.map(data => 
+            <div key={data.id}>
+              <DragList {...data} />
             </div>
-          </>:
-          null
-        }
-        <AddCircleIcon onClick={()=>dispatch({type:ACTION.OPCHEQUEPART})} />
+          )}
+          <div>
+            {totalPrice.reduce((price)=>{
+              price=+price
+            })}
+          </div>
+          <button onClick={()=>dispatch({type:ACTION.ADDDRAG})}>Add</button>
+          <button onClick={()=>dispatch({type:ACTION.CANCEL})}>Close</button>
+        </div>:
+        null
+      }
+      <section className='chequeheader'>
+        
+        <AddCircleIcon onClick={()=>dispatch({type:ACTION.ADDDRAG})} />
         <div>Cheque Info</div>
         {(!state.stForm)?
           (

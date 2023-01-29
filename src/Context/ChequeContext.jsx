@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react'
 import { useState, useEffect } from 'react'
-import { getChequeData } from '../controller/ChequeController';
+import { getChequeData, getDragData, getSupplierData } from '../controller/DataController';
 
 
 const ChequeContext = createContext()
@@ -10,7 +10,10 @@ export function useChequecontext() {
 }
 
 export function ContextProvider({children}) {
-  const [date,setDate] = useState('')
+  const [date,setDate] = useState([])
+  const [dragdata, setDragdata] = useState([])
+  const [supplierdata, setSupplierdata] = useState([])
+  const [totalPrice, setTotalPrice] = useState([0])
   const [to,setTo] = useState('')
   const [amount,setAmount] = useState('')
   const [data, setData] = useState([]);
@@ -19,8 +22,12 @@ export function ContextProvider({children}) {
   useEffect(()=>{
     const getData = async () => {
       try{
-        const response = await getChequeData();
-        setData(response.data);
+        const chequeres = await getChequeData();
+        const dragres = await getDragData();
+        const supplierres = await getSupplierData();
+        setData(chequeres.data);
+        setDragdata(dragres.data);
+        setSupplierdata(supplierres.data);
       } catch (err) {
         console.log(err);
       }
@@ -28,9 +35,19 @@ export function ContextProvider({children}) {
     getData();
   },[])
 
+  const value = {
+    data        , setData,
+    dragdata    , setDragdata,
+    supplierdata, setSupplierdata,
+    date        , setDate,
+    to          , setTo,
+    amount      , setAmount,
+    print       , setPrint,
+    totalPrice, setTotalPrice
+  }
 
   return (
-    <ChequeContext.Provider value={{data, setData, date, setDate, to, setTo, amount, setAmount, print, setPrint}}>
+    <ChequeContext.Provider value={value}>
       {children}
     </ChequeContext.Provider>
   )
