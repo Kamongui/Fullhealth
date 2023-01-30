@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "devforpb": "parcel src/main.jsx",
+    "build": "vite build, parcel build src/index.html",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^3.0.0",
+    "parcel-bundler": "^1.12.5",
     "vite": "^4.0.0"
   }
 }
