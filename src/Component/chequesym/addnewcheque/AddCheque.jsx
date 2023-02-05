@@ -1,11 +1,15 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useChequecontext } from '../../../Context/ChequeContext'
 import { createNewcheque } from '../../../controller/DataController'
 
 const Cheque = () => {
   const idRef = useRef()
 
-  const {data, setData, date, setDate, to, setTo, amount, setAmount} = useChequecontext()
+  const [date,setDate] = useState([])
+  const [to,setTo] = useState('')
+  const [amount,setAmount] = useState('')
+
+  const {data, setData} = useChequecontext()
 
   useEffect(()=>idRef.current.focus(),[])
 
