@@ -10,14 +10,12 @@ export function useChequecontext() {
 }
 
 export function ContextProvider({children}) {
-  const [date,setDate] = useState([])
+  const [data, setData] = useState([]);
   const [dragdata, setDragdata] = useState([])
   const [supplierdata, setSupplierdata] = useState([])
-  const [totalPrice, setTotalPrice] = useState([0])
-  const [to,setTo] = useState('')
-  const [amount,setAmount] = useState('')
-  const [data, setData] = useState([]);
+  const [totalPrice, setTotalPrice] = useState([])
   const [print, setPrint] = useState('');
+  const [quantity,setQuantity] = useState(0)
   
   useEffect(()=>{
     const getData = async () => {
@@ -35,15 +33,60 @@ export function ContextProvider({children}) {
     getData();
   },[])
 
+  const getItem = (id) => {
+    return totalPrice.find(item=>item.id === id)?.quantity || 0
+  }
+  const inDrag = (id,Price) => {
+    setTotalPrice(current=>{
+      if(current.find(item=>item.id === id) == null) {
+        return [...current,
+        {id:id,price:Price,quantity:+1}]
+      } else {
+        return current.map(item=>{
+          if(item.id===id){
+            return {...item,quantity:item.quantity+1}
+          } else {
+            return item
+          }
+        })
+      }
+    })
+  }
+  const deDrag = (id) => {
+    setTotalPrice(current=>{
+      if(current.find(item=>item.id === id)?.quantity === 1){
+        return current.filter(item=>
+          item.id !== id
+        )} else {
+        return current.map(item=>{
+          if(item.id===id){
+            return {...item,quantity:item.quantity-1}
+          } else {
+            return item
+          }
+        })
+      }
+    })
+  }
+  const rmDrag = (id) => {
+    setTotalPrice(current=>{
+      if(current.find(item=>item.id === id)?.quantity){
+        return current.filter(item=>
+          item.id !== id
+        )
+      }
+    })
+  }
+
   const value = {
     data        , setData,
     dragdata    , setDragdata,
     supplierdata, setSupplierdata,
-    date        , setDate,
-    to          , setTo,
-    amount      , setAmount,
     print       , setPrint,
-    totalPrice, setTotalPrice
+    totalPrice  , setTotalPrice,
+    quantity    , setQuantity,
+    inDrag      , deDrag,
+    rmDrag      , getItem
   }
 
   return (
