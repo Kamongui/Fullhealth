@@ -1,28 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useChequecontext } from '../../Context/ChequeContext'
 
 const DragList = ( {id, DragName, Price} ) => {
-  const { totalPrice, setTotalPrice } = useChequecontext()
-  const [checked, setChecked] = useState(false)
-
-  const handleChange = (data) => {
-    setChecked(!checked)
-    setTotalPrice([...totalPrice,Price])
-    console.log(totalPrice)
-  }
+  const { inDrag, deDrag, rmDrag, getItem } = useChequecontext()
 
   return (
     <div>
-      <input
-        type="checkbox"
-        id={id}
-        onChange = {handleChange}
-      />
       <label htmlFor={id}>{DragName}</label>
       <span> {Price} </span>
-      <span>Count</span>
-      <button>+</button>
-      <button>-</button>
+      <span>
+        {(getItem(id) === 0)?
+          <button onClick={()=>inDrag(id,Price)}>Add</button>:
+          <span>
+            <button onClick={()=>inDrag(id)}>+</button>
+            <span>{getItem(id)}</span>
+            <button onClick={()=>deDrag(id)}>-</button>
+            <button onClick={()=>rmDrag(id)}>Remove</button>
+          </span>
+          }
+      </span>
     </div>
   )
 }

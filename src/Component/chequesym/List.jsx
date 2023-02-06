@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import { TableCell } from '@mui/material';
 import { TableRow } from '@mui/material';
 import { useState } from 'react';
 import { useChequecontext } from '../../Context/ChequeContext';
 import { updateCheque, deleteCheque } from '../../controller/DataController' 
 
- const List = ({ id, Date, Payee, Amount }) => {
-  const {data, setData, date, setDate, to, setTo, amount, setAmount, setPrint} = useChequecontext()
+const List = ({ id, Status, Date, Payee, Amount }) => {
+  const [date, setDate] = useState(Date)
+  const [to, setTo] = useState(Payee)
+  const [amount, setAmount] = useState(Amount)
   const [edit, setEdit] = useState(false)
   const [activedel, setActivedel] = useState(false)
-  
+  const [status, setStatus] = useState(Status)
+  const {data, setData, setPrint} = useChequecontext()
+
   const doneBtn = async () => {
-    const newdata = {"id":id,"Date":date,"To":(to === '')?To:to,"Amount":amount}
+    const newdata = {"id":id,"Status":"-","Date":date,"Payee":to,"Amount":amount}
     try{
       await updateCheque(id, newdata)
       const newChequearray = [...data.filter(data=>data.id !==id), newdata]
       //sort function not yet finish
-      const finalarray = newChequearray.sort((a,b) => (a.id > b.id)?1:0)
+      const finalarray = newChequearray.sort((a,b) => (a.id - b.id))
       setData(finalarray)
-      setDate('')
-      setTo('')
-      setAmount('')
       setEdit(false)
     } catch (err) {
       console.log(err)
@@ -28,21 +29,32 @@ import { updateCheque, deleteCheque } from '../../controller/DataController'
   }
   const editBtn = () => {
     setEdit(true)
-    setDate(Date)
-    setTo(Payee)
-    setAmount(Amount)
   }
   const cancelBtn = () => {
     setEdit(false)
   }
+
+  // problems occurs
   const deleteBtn = async () =>{
+    const newdata = {"id":id,"Status":"Paid","Date":date,"Payee":to,"Amount":amount}
     try{
-      await deleteCheque(id)
-      const newChequearray = data.filter(data=>data.id !==id)
-      setData(newChequearray)
+      await updateCheque(id, newdata)
+      const newChequearray = [...data.filter(data=>data.id !==id), newdata]
+      //sort function not yet finish
+      const finalarray = newChequearray.sort((a,b) => (a.id - b.id))
+      setData(finalarray)
+      setActivedel(activedel)
     } catch (err) {
       console.log(err)
     }
+    // code below used for del data from server forever
+    // try{
+    //   await deleteCheque(id)
+    //   const newChequearray = data.filter(data=>data.id !==id)
+    //   setData(newChequearray)
+    // } catch (err) {
+    //   console.log(err)
+    // }
   }
   const previewBtn = () => {
     setPrint(id)
@@ -57,27 +69,23 @@ import { updateCheque, deleteCheque } from '../../controller/DataController'
         {id}
       </TableCell>
       <TableCell align="center">
-        Status
-        {/* {(!edit)?
-          Date:
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
-        } */}
+        {status}
       </TableCell>
       <TableCell align="center">
         {(!edit)?
-          Date:
+          date:
           <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
         }
       </TableCell>
       <TableCell align="center">
       {(!edit)?
-          Payee:
+          to:
           <input type="text" value={to} onChange={(e) => setTo(e.target.value)} />
         }
       </TableCell>
       <TableCell align="center">
       {(!edit)?
-          Amount:
+          amount:
           <input type="text" value={amount} onChange={(e) => setAmount(e.target.value)} />
         }
       </TableCell>

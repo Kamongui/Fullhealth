@@ -2,21 +2,38 @@
   "data": [
     {
       "id": 6,
-      "Date": "2023-01-26",
-      "Payee": "Jack",
-      "Amount": "666"
+      "Status": "-",
+      "Date": "2023-02-07",
+      "Payee": "Lion",
+      "Amount": "1234"
     },
     {
       "id": 7,
-      "Date": "2023-02-11",
-      "Payee": "Tom",
-      "Amount": "14"
+      "Status": "-",
+      "Date": "2023-02-07",
+      "Payee": "Testing",
+      "Amount": "7"
     },
     {
       "id": 8,
-      "Date": "2023-01-26",
+      "Status": "-",
+      "Date": "2023-02-08",
       "Payee": "Jack",
-      "Amount": "666"
+      "Amount": "8000"
+    },
+    {
+      "id": 9,
+      "Status": "-",
+      "Date": "2023-02-06",
+      "Payee": "Tom",
+      "Amount": 1000
+    },
+    {
+      "id": 11,
+      "Status": "-",
+      "Date": "2023-02-06",
+      "Payee": "Tom",
+      "Amount": 1000
     }
   ],
   "drag": [
