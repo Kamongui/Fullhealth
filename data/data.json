@@ -34,6 +34,12 @@
       "Date": "2023-02-06",
       "Payee": "Tom",
       "Amount": 1000
+    },
+    {
+      "id": 12,
+      "Date": "2023-02-07",
+      "Payee": "Tom",
+      "Amount": 2000
     }
   ],
   "drag": [

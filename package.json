@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "parcel": "parcel build src/style/newStyle.scss"
+    "test": "parcel src/style/newStyle.scss"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",

@@ -13,8 +13,9 @@ const Supplier = () => {
 
   return (
     <div>
-      Supplier List
-      {/* title */}
+      Testing
+      {/* Supplier List
+
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -39,7 +40,7 @@ const Supplier = () => {
         <div key={data.supplierId}>
           {data.SupplierName}
         </div>
-      )}
+      )} */}
     </div>
   )
 }
