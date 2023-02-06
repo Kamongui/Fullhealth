@@ -60,6 +60,7 @@ const Cheque = () => {
           </div>:
           null
       }
+
       <section className='chequeheader'>
         <AddCircleIcon onClick={openMenu} />
         <div style={{color:'darkgreen',backgroundColor:'skyblue'}}>Add serach function</div>
