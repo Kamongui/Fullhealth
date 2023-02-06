@@ -1,79 +1,70 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useState } from 'react'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ChequeTitle from '../Component/chequesym/ChequeTitle'
 import { useChequecontext } from '../Context/ChequeContext'
 import DragList from '../Component/chequesym/DragList'
-
-const ACTION = {ADDDRAG:'adddarg', ADDCHEQUE:'addcheque',BACKTODRAG:'backtodrag',CANCEL:'cancel'}
-
-const reducer = (state,action) => {
-  //op = open, cl = close
-  switch (action.type){
-    case 'adddarg':
-      return {...state,adddrag:true}
-    case 'addcheque':
-      return {...state,addcheque:true}
-    case 'backtodrag':
-      return {...state,addcheque:false}
-    case 'cancel':
-      return {...state,adddrag:false,addcheque:false}
-    default:
-      return {...state}
-  }
-}
+import AddCheque from '../Component/chequesym/addnewcheque/AddCheque'
 
 const Cheque = () => {
-  const [state,dispatch] = useReducer(
-    reducer,
-    {
-      count:0,
-      edit:false,
-      adddrag:false,
-      addcheque:false,
-    }
-  )
-
-  const { dragdata,totalPrice } = useChequecontext()
-
+  const [adddrag, setAdddrag] = useState(false)
+  const [addcheque,setAddcheque] = useState(false)
+  const { dragdata, totalPrice, setTotalPrice } = useChequecontext()
+  
+  // variable to save the cheque amount
+  const finalprice = totalPrice.reduce((total, item)=>{
+    return total + (item.price*item.quantity)
+  },0)
+  const openMenu = () => {
+    setAdddrag(true)
+  }
+  const addbtn = () => {
+    setAddcheque(true)
+  }
+  const backtodrag = () => {
+    setAddcheque(false)
+  }
+  const closeMenu = () =>{
+    setAdddrag(false)
+    setAddcheque(false)
+  }
   return (
     <>
-      {(state.adddrag)?
+      {/* Choose product(s) to pay supplier */}
+      {(adddrag && !addcheque)?
         <div className='chequecomponent'>
-          {dragdata.map(data => 
+          {dragdata.map((data,test) => 
             <div key={data.id}>
               <DragList {...data} />
             </div>
           )}
           <div>
-            {totalPrice.reduce((price)=>{
-              price=+price
-            })}
+            {finalprice}
           </div>
-          <button onClick={()=>dispatch({type:ACTION.ADDDRAG})}>Add</button>
-          <button onClick={()=>dispatch({type:ACTION.CANCEL})}>Close</button>
-        </div>:
-        null
+          <button onClick={addbtn}>Add</button>
+          <br />
+          <button onClick={()=>setTotalPrice([])}>Clear</button>
+          <button onClick={closeMenu}>Close</button>
+        </div>:(adddrag && addcheque)?
+          <div className='chequecomponent'>
+            <AddCheque 
+              finalprice = {finalprice}
+              setAdddrag = {setAdddrag}
+              setAddcheque = {setAddcheque}
+            />
+            <button onClick={backtodrag}>Back</button>
+            <button onClick={closeMenu}>Close</button>
+            <br />
+            {/* below btn only use in dev env */}
+            <button onClick={()=>console.log(finalprice)}>Print cheque amount</button>
+            <button onClick={()=>console.log('finalinfo')}>Print cheque info</button>
+          </div>:
+          null
       }
+
       <section className='chequeheader'>
-        
-        <AddCircleIcon onClick={()=>dispatch({type:ACTION.ADDDRAG})} />
+        <AddCircleIcon onClick={openMenu} />
+        <div style={{color:'darkgreen',backgroundColor:'skyblue'}}>Add serach function</div>
         <div>Cheque Info</div>
-        {(!state.stForm)?
-          (
-            <div>
-              <div>"dragList"</div>
-              <button onClick={()=>dispatch({type:ACTION.OPSTFORM})}>Next</button>
-            </div>
-          ):
-          (!ndForm)?(
-            <div>
-              <div>"supplierList"</div>
-              {/* <button onClick={()=>setStForm(false)}>Back</button> */}
-              <button onClick={()=>setNdForm(true)}>Next</button>
-            </div>
-          ):
-          "Success"
-        }
       </section>
       <ChequeTitle />
     </>
