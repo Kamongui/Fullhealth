@@ -2,20 +2,20 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useChequecontext } from '../../../Context/ChequeContext'
 import { createNewcheque } from '../../../controller/DataController'
 
-const Cheque = () => {
+const Cheque = ({finalprice,setAdddrag,setAddcheque}) => {
   const idRef = useRef()
-
+  
   const [date,setDate] = useState([])
   const [to,setTo] = useState('')
-  const [amount,setAmount] = useState('')
-
-  const {data, setData} = useChequecontext()
-
+  const [amount,setAmount] = useState(finalprice)
+  
+  const {data, setData, setPrint, setTotalPrice } = useChequecontext()
+  
   useEffect(()=>idRef.current.focus(),[])
-
+  
   const handlesubmit = async (e) =>{
     e.preventDefault();
-    const newdata = {"id":data[data.length-1].Id+1,"Date":date,"To":to, "Amount":amount};
+    const newdata = {"id":data[data.length-1].id+1,"Date":date,"Payee":to, "Amount":amount};
     try{
       await createNewcheque(newdata);
       const newChequearray = [...data,newdata]
@@ -23,11 +23,14 @@ const Cheque = () => {
       setDate('');
       setTo('');
       setAmount('');
+      setTotalPrice([])
+      setAdddrag(false);
+      setAddcheque(false);
     } catch (err) {
       console.log(err);
     }
   }
-    
+  console.log(data)
   return (
     <form onSubmit={handlesubmit} className='chequeForm'>
       <div>
