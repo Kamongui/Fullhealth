@@ -43,7 +43,7 @@ const List = ({ id, Status, Date, Payee, Amount }) => {
       //sort function not yet finish
       const finalarray = newChequearray.sort((a,b) => (a.id - b.id))
       setData(finalarray)
-      setActivedel(activedel)
+      setActivedel(false)
     } catch (err) {
       console.log(err)
     }
@@ -98,6 +98,7 @@ const List = ({ id, Status, Date, Payee, Amount }) => {
           </div>}
       </TableCell>
       <TableCell align="center">
+        {/* problem occour */}
       <input type="checkbox" onClick={() => setActivedel(!activedel)}/><button disabled={!activedel} onClick={deleteBtn}>Delete</button>
       </TableCell>
       <TableCell align="center">

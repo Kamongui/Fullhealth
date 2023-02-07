@@ -15,7 +15,7 @@ const Cheque = ({finalprice,setAdddrag,setAddcheque}) => {
   
   const handlesubmit = async (e) =>{
     e.preventDefault();
-    const newdata = {"id":data[data.length-1].id+1,"Date":date,"Payee":to, "Amount":amount};
+    const newdata = {"id":data[data.length-1].id+1,"Status":"-","Date":date,"Payee":to, "Amount":amount};
     try{
       await createNewcheque(newdata);
       const newChequearray = [...data,newdata]

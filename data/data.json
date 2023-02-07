@@ -29,18 +29,18 @@
       "Amount": 1000
     },
     {
-      "id": 11,
+      "id": 10,
       "Status": "-",
-      "Date": "2023-02-06",
-      "Payee": "Tom",
-      "Amount": 1000
-    },
-    {
-      "id": 12,
-      "Status": "Paid",
-      "Date": "2023-02-07",
+      "Date": "2023-02-08",
       "Payee": "Tom",
       "Amount": 2000
+    },
+    {
+      "id": 11,
+      "Status": "Paid",
+      "Date": "2023-02-14",
+      "Payee": "Umi",
+      "Amount": 400
     }
   ],
   "drag": [
