@@ -14,12 +14,13 @@ function App() {
       <Header/>
       <main className='mainContent'>
         <Routes>
-          <Route path='/' element={<Home/>} />
+          <Route path='/' element={<Home/>}>
+            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Login />} />
+          </Route>
           <Route path='/cheque' element={<Cheque/>} />
           <Route path='/drag' element={<DragList/>} />
           <Route path='/supplier' element={<Supplier/>} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
         </Routes>
       </main>
     </>

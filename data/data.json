@@ -37,6 +37,7 @@
     },
     {
       "id": 12,
+      "Status": "Paid",
       "Date": "2023-02-07",
       "Payee": "Tom",
       "Amount": 2000
