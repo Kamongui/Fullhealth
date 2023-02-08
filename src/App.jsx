@@ -6,6 +6,7 @@ import Cheque from './page/Cheque'
 import Supplier from './page/Supplier'
 import Register from './page/Register'
 import Login from './page/Login'
+import PrintPDF from './Component/PrintPDF'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='/cheque' element={<Cheque/>} />
           <Route path='/drag' element={<DragList/>} />
           <Route path='/supplier' element={<Supplier/>} />
+          <Route path='/print' element={<PrintPDF/>} />
         </Routes>
       </main>
     </>

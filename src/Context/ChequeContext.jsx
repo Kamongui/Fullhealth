@@ -11,11 +11,12 @@ export function useChequecontext() {
 
 export function ContextProvider({children}) {
   const [data, setData] = useState([]);
-  const [dragdata, setDragdata] = useState([])
-  const [supplierdata, setSupplierdata] = useState([])
-  const [totalPrice, setTotalPrice] = useState([])
-  const [print, setPrint] = useState('');
-  const [quantity,setQuantity] = useState(0)
+  const [dragdata, setDragdata] = useState([]);
+  const [supplierdata, setSupplierdata] = useState([]);
+  const [totalPrice, setTotalPrice] = useState([]);
+  const [print, setPrint] = useState(false);
+  const [printData, setPrintData] = useState([]);
+  const [quantity,setQuantity] = useState(0);
   
   useEffect(()=>{
     const getData = async () => {
@@ -86,7 +87,8 @@ export function ContextProvider({children}) {
     totalPrice  , setTotalPrice,
     quantity    , setQuantity,
     inDrag      , deDrag,
-    rmDrag      , getItem
+    rmDrag      , getItem,
+    printData   , setPrintData
   }
 
   return (

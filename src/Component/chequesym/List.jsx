@@ -1,7 +1,7 @@
-import React, { useReducer } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { TableCell } from '@mui/material';
 import { TableRow } from '@mui/material';
-import { useState } from 'react';
 import { useChequecontext } from '../../Context/ChequeContext';
 import { updateCheque, deleteCheque } from '../../controller/DataController' 
 
@@ -14,7 +14,7 @@ const List = ({ id, Status, Date, Payee, PaidDate, Amount }) => {
   const [edit, setEdit] = useState(false)
   const [activedel, setActivedel] = useState(false)
   const [status, setStatus] = useState(Status)
-  const {data, setData, setPrint} = useChequecontext()
+  const {data, setData, setPrintData} = useChequecontext()
 
   const doneBtn = async () => {
     const newdata = {"id":id,"Status":"-","Date":date,"Payee":to,"PaidDate":"-","Amount":amount}
@@ -59,8 +59,8 @@ const List = ({ id, Status, Date, Payee, PaidDate, Amount }) => {
     // }
   }
   const previewBtn = () => {
-    const printData = data.filter(item=>item.id === id)
-    console.log(printData)
+    const printdata = data.filter(item=>item.id === id)
+    setPrintData(printdata)
   }
 
   return (
@@ -107,7 +107,9 @@ const List = ({ id, Status, Date, Payee, PaidDate, Amount }) => {
         <div>{PaidDate}</div>
       </TableCell>
       <TableCell align="center">
+      <Link to='/print'>
         <button onClick={previewBtn} >Pre-view</button>
+      </Link>
       </TableCell>
     </TableRow>
   );
