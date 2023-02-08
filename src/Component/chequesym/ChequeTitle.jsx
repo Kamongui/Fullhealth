@@ -24,6 +24,7 @@ const ChequeTitle = () => {
               <TableCell align="center">Amount</TableCell>
               <TableCell align="center">Edit</TableCell>
               <TableCell align="center">Delete</TableCell>
+              <TableCell align="center">Paid Date</TableCell>
               <TableCell align="center">Pre-view</TableCell>
             </TableRow>
           </TableHead>

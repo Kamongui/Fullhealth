@@ -5,17 +5,17 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
-  { field: 'id', headerName: 'ID', width: 90 },
+  { field: 'id', headerName: 'ID', width: 150 },
   {
     field: 'DragName',
     headerName: 'Name',
-    width: 150,
+    width: 300,
     editable: true,
   },
   {
     field: 'Price',
     headerName: 'Price',
-    width: 150,
+    width: 300,
     editable: true,
   }
 ];

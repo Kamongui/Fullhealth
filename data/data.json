@@ -3,15 +3,17 @@
     {
       "id": 6,
       "Status": "-",
-      "Date": "2023-02-07",
-      "Payee": "Lion",
-      "Amount": "1234"
+      "Date": "2023-02-09",
+      "Payee": "Gao",
+      "PaidDate": "-",
+      "Amount": "1000"
     },
     {
       "id": 7,
       "Status": "-",
       "Date": "2023-02-07",
       "Payee": "Testing",
+      "PaidDate": "-",
       "Amount": "7"
     },
     {
@@ -19,6 +21,7 @@
       "Status": "-",
       "Date": "2023-02-08",
       "Payee": "Jack",
+      "PaidDate": "-",
       "Amount": "8000"
     },
     {
@@ -26,6 +29,7 @@
       "Status": "-",
       "Date": "2023-02-06",
       "Payee": "Tom",
+      "PaidDate": "-",
       "Amount": 1000
     },
     {
@@ -33,13 +37,15 @@
       "Status": "-",
       "Date": "2023-02-08",
       "Payee": "Tom",
+      "PaidDate": "-",
       "Amount": 2000
     },
     {
       "id": 11,
-      "Status": "Paid",
+      "Status": "-",
       "Date": "2023-02-14",
       "Payee": "Umi",
+      "PaidDate": "-",
       "Amount": 400
     }
   ],

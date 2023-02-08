@@ -5,7 +5,9 @@ import { useState } from 'react';
 import { useChequecontext } from '../../Context/ChequeContext';
 import { updateCheque, deleteCheque } from '../../controller/DataController' 
 
-const List = ({ id, Status, Date, Payee, Amount }) => {
+const getToday = JSON.stringify(new Date());
+
+const List = ({ id, Status, Date, Payee, PaidDate, Amount }) => {
   const [date, setDate] = useState(Date)
   const [to, setTo] = useState(Payee)
   const [amount, setAmount] = useState(Amount)
@@ -15,7 +17,7 @@ const List = ({ id, Status, Date, Payee, Amount }) => {
   const {data, setData, setPrint} = useChequecontext()
 
   const doneBtn = async () => {
-    const newdata = {"id":id,"Status":"-","Date":date,"Payee":to,"Amount":amount}
+    const newdata = {"id":id,"Status":"-","Date":date,"Payee":to,"PaidDate":"-","Amount":amount}
     try{
       await updateCheque(id, newdata)
       const newChequearray = [...data.filter(data=>data.id !==id), newdata]
@@ -36,14 +38,14 @@ const List = ({ id, Status, Date, Payee, Amount }) => {
 
   // problems occurs
   const deleteBtn = async () =>{
-    const newdata = {"id":id,"Status":"Paid","Date":date,"Payee":to,"Amount":amount}
+    const newdata = {"id":id,"Status":"Paid","Date":date,"Payee":to,"PaidDate":getToday,"Amount":amount}
     try{
       await updateCheque(id, newdata)
       const newChequearray = [...data.filter(data=>data.id !==id), newdata]
       //sort function not yet finish
       const finalarray = newChequearray.sort((a,b) => (a.id - b.id))
       setData(finalarray)
-      setActivedel(false)
+      setActivedel(!activedel)
     } catch (err) {
       console.log(err)
     }
@@ -57,7 +59,8 @@ const List = ({ id, Status, Date, Payee, Amount }) => {
     // }
   }
   const previewBtn = () => {
-    setPrint(id)
+    const printData = data.filter(item=>item.id === id)
+    console.log(printData)
   }
 
   return (
@@ -98,11 +101,13 @@ const List = ({ id, Status, Date, Payee, Amount }) => {
           </div>}
       </TableCell>
       <TableCell align="center">
-        {/* problem occour */}
-      <input type="checkbox" onClick={() => setActivedel(!activedel)}/><button disabled={!activedel} onClick={deleteBtn}>Delete</button>
+      <input type="checkbox" checked={activedel} onChange={() => setActivedel(!activedel)}/><button disabled={!activedel} onClick={deleteBtn}>Delete</button>
       </TableCell>
       <TableCell align="center">
-        <button>Pre-view</button>
+        <div>{PaidDate}</div>
+      </TableCell>
+      <TableCell align="center">
+        <button onClick={previewBtn} >Pre-view</button>
       </TableCell>
     </TableRow>
   );
