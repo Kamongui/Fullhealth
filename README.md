@@ -5,13 +5,13 @@
 ##Open new terminal, enter command
 ###npm run dev
 
-#Open a json-server to get data,
-##For Opening a localhost port 3500 of Json-server, "data.json" use in dev-mode
+#Open a json-server to get data
+##For Opening a localhost port 3500 of Json-server
 ##Open new terminal, use the below command
 ###npx json-server -p 3500 -w ./data/data.json
 
 
-
+Selfuse
 For using sass/scss
   "npm i -g sass"
   then use Command - "sass --watch scss:css"

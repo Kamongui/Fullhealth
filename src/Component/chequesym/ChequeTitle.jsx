@@ -22,6 +22,7 @@ const ChequeTitle = () => {
               <TableCell align="center">Date</TableCell>
               <TableCell align="center">Payee</TableCell>
               <TableCell align="center">Amount</TableCell>
+              <TableCell align="center">Signatory</TableCell>
               <TableCell align="center">Edit</TableCell>
               <TableCell align="center">Delete</TableCell>
               <TableCell align="center">Paid Date</TableCell>

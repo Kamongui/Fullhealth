@@ -7,17 +7,18 @@ import { updateCheque, deleteCheque } from '../../controller/DataController'
 
 const getToday = JSON.stringify(new Date());
 
-const List = ({ id, Status, Date, Payee, PaidDate, Amount }) => {
+const List = ({ id, Status, Date, Payee, PaidDate, Amount, Signatory }) => {
   const [date, setDate] = useState(Date)
   const [to, setTo] = useState(Payee)
   const [amount, setAmount] = useState(Amount)
+  const [signatory, setSignatory] = useState(Signatory)
   const [edit, setEdit] = useState(false)
   const [activedel, setActivedel] = useState(false)
   const [status, setStatus] = useState(Status)
   const {data, setData, setPrintData} = useChequecontext()
 
   const doneBtn = async () => {
-    const newdata = {"id":id,"Status":"-","Date":date,"Payee":to,"PaidDate":"-","Amount":amount}
+    const newdata = {"id":id,"Status":"-","Date":date,"Payee":to,"PaidDate":"-","Amount":amount,"Signatory":signatory}
     try{
       await updateCheque(id, newdata)
       const newChequearray = [...data.filter(data=>data.id !==id), newdata]
@@ -38,7 +39,7 @@ const List = ({ id, Status, Date, Payee, PaidDate, Amount }) => {
 
   // problems occurs
   const deleteBtn = async () =>{
-    const newdata = {"id":id,"Status":"Paid","Date":date,"Payee":to,"PaidDate":getToday,"Amount":amount}
+    const newdata = {"id":id,"Status":"Paid","Date":date,"Payee":to,"PaidDate":getToday,"Amount":amount,"Signatory":signatory}
     try{
       await updateCheque(id, newdata)
       const newChequearray = [...data.filter(data=>data.id !==id), newdata]
@@ -81,15 +82,21 @@ const List = ({ id, Status, Date, Payee, PaidDate, Amount }) => {
         }
       </TableCell>
       <TableCell align="center">
-      {(!edit)?
+        {(!edit)?
           to:
           <input type="text" value={to} onChange={(e) => setTo(e.target.value)} />
         }
       </TableCell>
       <TableCell align="center">
-      {(!edit)?
+        {(!edit)?
           amount:
           <input type="text" value={amount} onChange={(e) => setAmount(e.target.value)} />
+        }
+      </TableCell>
+      <TableCell align="center">
+        {(!edit)?
+          signatory:
+          <input type="text" value={signatory} onChange={(e) => setSignatory(e.target.value)} />
         }
       </TableCell>
       <TableCell align="center">

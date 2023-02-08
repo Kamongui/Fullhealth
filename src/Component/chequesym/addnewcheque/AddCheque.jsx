@@ -7,15 +7,16 @@ const Cheque = ({finalprice,setAdddrag,setAddcheque}) => {
   
   const [date,setDate] = useState([])
   const [to,setTo] = useState('')
+  const [signatory,setSignatory] = useState('')
   const [amount,setAmount] = useState(finalprice)
   
-  const {data, setData, setPrint, setTotalPrice } = useChequecontext()
+  const {data, setData, setTotalPrice } = useChequecontext()
   
   useEffect(()=>idRef.current.focus(),[])
   
   const handlesubmit = async (e) =>{
     e.preventDefault();
-    const newdata = {"id":data[data.length-1].id+1,"Status":"-","Date":date,"Payee":to, "Amount":amount};
+    const newdata = {"id":data[data.length-1].id+1,"Status":"-","Date":date,"Payee":to, "Amount":amount,"Signatory":signatory};
     try{
       await createNewcheque(newdata);
       const newChequearray = [...data,newdata]
@@ -23,6 +24,7 @@ const Cheque = ({finalprice,setAdddrag,setAddcheque}) => {
       setDate('');
       setTo('');
       setAmount('');
+      setSignatory('')
       setTotalPrice([])
       setAdddrag(false);
       setAddcheque(false);
@@ -43,7 +45,7 @@ const Cheque = ({finalprice,setAdddrag,setAddcheque}) => {
         <label htmlFor="to">To: </label><input type="text" id="to" value={to} onChange={(e)=>setTo(e.target.value)}/>
       </div>
       <div>
-        <label htmlFor="Signature">Sign Person: </label><input type="text" id="Signature"/>
+        <label htmlFor="Signature">Sign Person: </label><input type="text" id="Signature" value={signatory} onChange={(e)=>setSignatory(e.target.value)} />
       </div>
       <div>
         <label htmlFor="Amount">Amount: </label><input type="number" id="Amount" value={amount} onChange={(e)=>setAmount(e.target.value)}/>
