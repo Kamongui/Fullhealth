@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { TableCell } from '@mui/material';
 import { TableRow } from '@mui/material';
 import { useChequecontext } from '../../Context/ChequeContext';
-import { updateCheque, deleteCheque } from '../../controller/DataController' 
-import { CheckBox } from '@mui/icons-material';
+import { updateCheque, deleteCheque } from '../../controller/DataController'
 
 const getToday = JSON.stringify(new Date());
 
@@ -16,7 +15,7 @@ const ChequeContent = ({ id, Status, Date, Payee, PaidDate, Amount, Signatory })
   const [edit, setEdit] = useState(false)
   const [activedel, setActivedel] = useState(false)
   const [status, setStatus] = useState(Status)
-  const {data, setData, setPrintData} = useChequecontext()
+  const { chequeData, mutate, setPrintData} = useChequecontext()
 
   const doneBtn = async () => {
     const newdata = {"id":id,"Status":"-","Date":date,"Payee":to,"PaidDate":"-","Amount":amount,"Signatory":signatory}
@@ -53,15 +52,13 @@ const ChequeContent = ({ id, Status, Date, Payee, PaidDate, Amount, Signatory })
     }
   }
   const previewBtn = () => {
-    const printdata = data.filter(item=>item.id === id)
+    const printdata = chequeData.filter(item=>item.id === id)
     setPrintData(printdata)
   }
 
   return (
     //Edit = true, can edit info of the cheque
-    <TableRow
-      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-    >
+    <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
       <TableCell component="th" scope="row">
         {id}
       </TableCell>

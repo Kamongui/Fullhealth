@@ -10,7 +10,7 @@ const Cheque = () => {
   const [search, setSearch] = useState('')
   const [adddrag, setAdddrag] = useState(false)
   const [addcheque,setAddcheque] = useState(false)
-  const { dragdata, totalPrice, setTotalPrice } = useChequecontext()
+  const { isLoading, error, dragdata, totalPrice, setTotalPrice } = useChequecontext()
   
   // variable to save the cheque amount
   const finalprice = totalPrice.reduce((total, item)=>{
@@ -74,7 +74,12 @@ const Cheque = () => {
         </div>
         <div>Cheque Info</div>
       </section>
-      <ChequeTitle search={search} searchBy={searchBy}/>
+      {(isLoading)?
+        <div>Loading...</div>:
+        (error)?
+          <div>{error.message}</div>:
+          <ChequeTitle search={search} searchBy={searchBy}/>
+      }
     </>
   )
 }

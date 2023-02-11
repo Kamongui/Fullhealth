@@ -10,17 +10,16 @@ import {Paper} from '@mui/material';
 import { useChequecontext } from '../../Context/ChequeContext';
 
 const ChequeTitle = ({search,searchBy}) => {
+  const { chequeData, isLoading } = useChequecontext()
   // used to choose search title
-  let newData
-  const {data} = useChequecontext()
-  if(searchBy === 'Payee'){
-    newData = data.filter(items => (items.Payee).toLowerCase().includes(search.toLowerCase()))
-  } else if (searchBy === 'Signatory'){
-    newData = data.filter(items => (items.Signatory).toLowerCase().includes(search.toLowerCase()))
-  } else {
-    newData = data.filter(items => (items.Payee).toLowerCase().includes(search.toLowerCase()))
-  }
-
+  // let newData
+  // if(searchBy === 'Payee'){
+  //   newData = chequeData.filter(items => (items.Payee).toLowerCase().includes(search.toLowerCase()))
+  // } else if (searchBy === 'Signatory'){
+  //   newData = chequeData.filter(items => (items.Signatory).toLowerCase().includes(search.toLowerCase()))
+  // } else {
+  //   newData = chequeData.filter(items => (items.Payee).toLowerCase().includes(search.toLowerCase()))
+  // }
   return (
     <div style={{"position":"relative"}}>
       <TableContainer component={Paper}>
@@ -41,7 +40,7 @@ const ChequeTitle = ({search,searchBy}) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {newData.map((info) => (
+            {chequeData.map((info) => (
               <ChequeContent key={info.id} {...info}  />
             ))}
           </TableBody>

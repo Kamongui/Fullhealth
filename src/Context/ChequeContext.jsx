@@ -1,7 +1,9 @@
 import React, { createContext, useContext } from 'react'
 import { useState, useEffect } from 'react'
-import { getChequeData, getDragData, getSupplierData } from '../controller/DataController';
 
+// try to use SWR
+import useSWR from 'swr'
+import { getChequeData, getDragData, getSupplierData, chequeEndpt } from '../controller/DataController';
 
 const ChequeContext = createContext()
 
@@ -10,21 +12,30 @@ export function useChequecontext() {
 }
 
 export function ContextProvider({children}) {
-  const [data, setData] = useState([]);
+  const {
+    isLoading,
+    error,
+    data: chequeData,
+    mutate
+  } = useSWR(chequeEndpt, getChequeData, {
+    onSuccess: data => data.sort((a,b)=> a.id - b.id)
+  });
+
+  // const [data, setData] = useState([]);
   const [dragdata, setDragdata] = useState([]);
   const [supplierdata, setSupplierdata] = useState([]);
   const [totalPrice, setTotalPrice] = useState([]);
   const [print, setPrint] = useState(false);
   const [printData, setPrintData] = useState([]);
   const [quantity,setQuantity] = useState(0);
-  
+
   useEffect(()=>{
     const getData = async () => {
       try{
-        const chequeres = await getChequeData();
+        // const chequeres = await getChequeData();
         const dragres = await getDragData();
         const supplierres = await getSupplierData();
-        setData(chequeres.data);
+        // setData(chequeres.data);
         setDragdata(dragres.data);
         setSupplierdata(supplierres.data);
       } catch (err) {
@@ -80,7 +91,8 @@ export function ContextProvider({children}) {
   }
 
   const value = {
-    data        , setData,
+    chequeData  , isLoading,
+    error       , mutate,
     dragdata    , setDragdata,
     supplierdata, setSupplierdata,
     print       , setPrint,
