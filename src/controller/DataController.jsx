@@ -2,7 +2,7 @@ import {fetchData} from '../api/fetchData'
 
 //For cheque data
 //Get the info of cheque
-export const getChequeData = () => fetchData.get('/data')
+export const getChequeData = () => fetchData.get('/cheque')
 
 //create a new info of cheque
 export const createNewcheque = (newdata) => fetchData.post('/data', newdata)

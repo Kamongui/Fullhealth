@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
 const Register = () => {
@@ -59,7 +60,7 @@ const Register = () => {
         <br />
         <Button size='small' variant="contained" onClick={()=>console.log('text')} >Submit</Button>
       </form>
-      Sign-in
+      <Link to='/login'>Sign-in</Link>
     </div>
   )
 }

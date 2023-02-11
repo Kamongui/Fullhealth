@@ -4,10 +4,11 @@ import { TableCell } from '@mui/material';
 import { TableRow } from '@mui/material';
 import { useChequecontext } from '../../Context/ChequeContext';
 import { updateCheque, deleteCheque } from '../../controller/DataController' 
+import { CheckBox } from '@mui/icons-material';
 
 const getToday = JSON.stringify(new Date());
 
-const List = ({ id, Status, Date, Payee, PaidDate, Amount, Signatory }) => {
+const ChequeContent = ({ id, Status, Date, Payee, PaidDate, Amount, Signatory }) => {
   const [date, setDate] = useState(Date)
   const [to, setTo] = useState(Payee)
   const [amount, setAmount] = useState(Amount)
@@ -50,14 +51,6 @@ const List = ({ id, Status, Date, Payee, PaidDate, Amount, Signatory }) => {
     } catch (err) {
       console.log(err)
     }
-    // code below used for del data from server forever
-    // try{
-    //   await deleteCheque(id)
-    //   const newChequearray = data.filter(data=>data.id !==id)
-    //   setData(newChequearray)
-    // } catch (err) {
-    //   console.log(err)
-    // }
   }
   const previewBtn = () => {
     const printdata = data.filter(item=>item.id === id)
@@ -105,21 +98,25 @@ const List = ({ id, Status, Date, Payee, PaidDate, Amount, Signatory }) => {
           <div>
             <button onClick={doneBtn}>Done</button>
             <button onClick={cancelBtn}>Cancel</button>
-          </div>}
+          </div>
+        }
       </TableCell>
       <TableCell align="center">
-      <input type="checkbox" checked={activedel} onChange={() => setActivedel(!activedel)}/><button disabled={!activedel} onClick={deleteBtn}>Delete</button>
+        <input type="checkbox" checked={activedel} onChange={() => setActivedel(!activedel)}/><button disabled={!activedel} onClick={deleteBtn}>Delete</button>
       </TableCell>
       <TableCell align="center">
         <div>{PaidDate}</div>
       </TableCell>
       <TableCell align="center">
-      <Link to='/print'>
-        <button onClick={previewBtn} >Pre-view</button>
-      </Link>
+        <input type="checkbox" onChange={()=>console.log(id)} />
+      </TableCell>
+      <TableCell align="center">
+        <Link to='/print'>
+          <button onClick={previewBtn} >Pre-view</button>
+        </Link>
       </TableCell>
     </TableRow>
   );
 }
 
-export default List;
+export default ChequeContent;

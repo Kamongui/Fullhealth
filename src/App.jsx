@@ -2,11 +2,11 @@ import { Routes, Route } from 'react-router-dom'
 import Header from './Component/Header'
 import Home from './page/Home'
 import DragList from './page/Drag'
-import Cheque from './page/Cheque'
+import Cheque from './page/cheque/Cheque'
 import Supplier from './page/Supplier'
 import Register from './page/Register'
 import Login from './page/Login'
-import PrintPDF from './Component/PrintPDF'
+import PrintPDF from './page/cheque/PrintPDF'
 
 function App() {
 

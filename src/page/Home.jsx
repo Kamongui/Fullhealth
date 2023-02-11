@@ -7,7 +7,9 @@ const Home = () => {
   return (
     <div>
       Home
-      <Outlet />
+      <section className='container'>
+        <Outlet />
+      </section>
     </div>
   )
 }

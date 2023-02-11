@@ -1,5 +1,5 @@
 import React from 'react';
-import List from './List'
+import ChequeContent from './ChequeContent'
 import {Table} from '@mui/material';
 import {TableBody} from '@mui/material';
 import {TableCell} from '@mui/material';
@@ -9,8 +9,18 @@ import {TableRow} from '@mui/material';
 import {Paper} from '@mui/material';
 import { useChequecontext } from '../../Context/ChequeContext';
 
-const ChequeTitle = () => {
+const ChequeTitle = ({search,searchBy}) => {
+  // used to choose search title
+  let newData
   const {data} = useChequecontext()
+  if(searchBy === 'Payee'){
+    newData = data.filter(items => (items.Payee).toLowerCase().includes(search.toLowerCase()))
+  } else if (searchBy === 'Signatory'){
+    newData = data.filter(items => (items.Signatory).toLowerCase().includes(search.toLowerCase()))
+  } else {
+    newData = data.filter(items => (items.Payee).toLowerCase().includes(search.toLowerCase()))
+  }
+
   return (
     <div style={{"position":"relative"}}>
       <TableContainer component={Paper}>
@@ -26,12 +36,13 @@ const ChequeTitle = () => {
               <TableCell align="center">Edit</TableCell>
               <TableCell align="center">Delete</TableCell>
               <TableCell align="center">Paid Date</TableCell>
+              <TableCell align="center">Combine</TableCell>
               <TableCell align="center">Pre-view</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((info) => (
-              <List key={info.id} {...info}  />
+            {newData.map((info) => (
+              <ChequeContent key={info.id} {...info}  />
             ))}
           </TableBody>
         </Table>

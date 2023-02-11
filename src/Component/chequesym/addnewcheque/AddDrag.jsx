@@ -1,5 +1,5 @@
 import React from 'react'
-import { useChequecontext } from '../../Context/ChequeContext'
+import { useChequecontext } from '../../../Context/ChequeContext'
 
 const DragList = ( {id, DragName, Price} ) => {
   const { inDrag, deDrag, rmDrag, getItem } = useChequecontext()

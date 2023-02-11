@@ -43,8 +43,17 @@ li{
 }
 
 /* For signup form */
+.container{
+  display: flex;
+  justify-content: center;
+}
 .signup{
-  width: 50vw;
+  width: 25rem;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: skyblue;
   text-align: center;
   border: 1px solid black;
@@ -59,7 +68,6 @@ li{
     > div{
       margin: 10px;
       height: 60px;
-      display: inline-block;
       position: relative;
       color: blue;
       > label{
@@ -97,4 +105,8 @@ li{
   flex-direction: column;
   justify-content: center;
   align-items:center;
+}
+
+.chequePDF{
+  border: 3px solid yellow ;
 }
