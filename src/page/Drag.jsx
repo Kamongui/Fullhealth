@@ -21,7 +21,7 @@ const columns = [
 ];
 
 export default function Drag() {
-  const {dragdata} = useChequecontext();
+  const {dragData, dragLoading, dragError} = useChequecontext();
   const rows = [
     {
       id:1,DragName:"Drag1",Price:100
@@ -36,9 +36,15 @@ export default function Drag() {
 
 
   let row =[]
-  for(let i=0;i<dragdata.length;i++){
-    let rowData = dragdata[i]
-    row = [...row,rowData]
+  if (dragLoading) {
+    <h1>Loading</h1>
+  } else if (dragError) {
+    <h1>`${dragError.message}`</h1>
+  } else {
+    for(let i=0;i<dragData.length;i++){
+      let rowData = dragData[i]
+      row = [...row,rowData]
+    }
   }
   return (
     <Box sx={{ height: 400, width: '100%', backgroundColor:'pink' }}>

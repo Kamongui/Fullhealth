@@ -1,9 +1,7 @@
 import React, { createContext, useContext } from 'react'
 import { useState, useEffect } from 'react'
-
-// try to use SWR
 import useSWR from 'swr'
-import { getChequeData, getDragData, getSupplierData, chequeEndpt } from '../controller/DataController';
+import { getChequeData, getDragData, getSupplierData, chequeEndpt, dragEndpt, supplierEndpt } from '../api/fetchData';
 
 const ChequeContext = createContext()
 
@@ -12,6 +10,8 @@ export function useChequecontext() {
 }
 
 export function ContextProvider({children}) {
+  // line 13 - 40 are for Data control using "SWR"
+  // For Chque info
   const {
     isLoading,
     error,
@@ -20,31 +20,34 @@ export function ContextProvider({children}) {
   } = useSWR(chequeEndpt, getChequeData, {
     onSuccess: data => data.sort((a,b)=> a.id - b.id)
   });
+  // For Drag
+  const {
+    isLoading: dragLoading,
+    error: dragError,
+    data: dragData,
+    mutate: dragMutate
+  } = useSWR(dragEndpt, getDragData, {
+    onSuccess: data => data.sort((a,b)=> a.id - b.id)
+  });
+  // For Supplier
+  const {
+    isLoading: supplierLoading,
+    error: supplierError,
+    data: supplierData,
+    mutate: supplierMutate
+  } = useSWR(supplierEndpt, getSupplierData, {
+    onSuccess: data => data.sort((a,b)=> a.id - b.id)
+  });
 
-  // const [data, setData] = useState([]);
-  const [dragdata, setDragdata] = useState([]);
-  const [supplierdata, setSupplierdata] = useState([]);
+  // Control the price add into check info
   const [totalPrice, setTotalPrice] = useState([]);
+  // Selfuse, useless, can del
   const [print, setPrint] = useState(false);
+  // For print PDF
   const [printData, setPrintData] = useState([]);
   const [quantity,setQuantity] = useState(0);
 
-  useEffect(()=>{
-    const getData = async () => {
-      try{
-        // const chequeres = await getChequeData();
-        const dragres = await getDragData();
-        const supplierres = await getSupplierData();
-        // setData(chequeres.data);
-        setDragdata(dragres.data);
-        setSupplierdata(supplierres.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getData();
-  },[])
-
+  // line 49 - 93, For ChooseDrag fn
   const getItem = (id) => {
     return totalPrice.find(item=>item.id === id)?.quantity || 0
   }
@@ -90,17 +93,20 @@ export function ContextProvider({children}) {
     })
   }
 
+  // Context list for share to global
   const value = {
-    chequeData  , isLoading,
-    error       , mutate,
-    dragdata    , setDragdata,
-    supplierdata, setSupplierdata,
-    print       , setPrint,
-    totalPrice  , setTotalPrice,
-    quantity    , setQuantity,
-    inDrag      , deDrag,
-    rmDrag      , getItem,
-    printData   , setPrintData
+    chequeData   , isLoading,
+    error        , mutate,
+    dragData     , dragLoading,
+    dragError    , dragMutate,
+    supplierData , supplierLoading,
+    supplierError, supplierMutate,
+    print        , setPrint,
+    totalPrice   , setTotalPrice,
+    quantity     , setQuantity,
+    inDrag       , deDrag,
+    rmDrag       , getItem,
+    printData    , setPrintData
   }
 
   return (

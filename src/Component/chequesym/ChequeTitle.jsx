@@ -10,7 +10,7 @@ import {Paper} from '@mui/material';
 import { useChequecontext } from '../../Context/ChequeContext';
 
 const ChequeTitle = ({search,searchBy}) => {
-  const { chequeData, isLoading } = useChequecontext()
+  const { chequeData } = useChequecontext()
   // used to choose search title
   // let newData
   // if(searchBy === 'Payee'){
@@ -24,7 +24,7 @@ const ChequeTitle = ({search,searchBy}) => {
     <div style={{"position":"relative"}}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
+          <TableHead >
             <TableRow>
               <TableCell>id</TableCell>
               <TableCell align="center">Status</TableCell>

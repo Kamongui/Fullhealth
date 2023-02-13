@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { TableCell } from '@mui/material';
 import { TableRow } from '@mui/material';
 import { useChequecontext } from '../../Context/ChequeContext';
-import { updateCheque, deleteCheque } from '../../controller/DataController'
+import { updateCheque, deleteCheque } from '../../api/fetchData'
 
 const getToday = JSON.stringify(new Date());
 
@@ -21,10 +21,11 @@ const ChequeContent = ({ id, Status, Date, Payee, PaidDate, Amount, Signatory })
     const newdata = {"id":id,"Status":"-","Date":date,"Payee":to,"PaidDate":"-","Amount":amount,"Signatory":signatory}
     try{
       await updateCheque(id, newdata)
-      const newChequearray = [...data.filter(data=>data.id !==id), newdata]
+      mutate()
+      // const newChequearray = [...data.filter(data=>data.id !==id), newdata]
       //sort function not yet finish
-      const finalarray = newChequearray.sort((a,b) => (a.id - b.id))
-      setData(finalarray)
+      // const finalarray = newChequearray.sort((a,b) => (a.id - b.id))
+      // setData(finalarray)
       setEdit(false)
     } catch (err) {
       console.log(err)

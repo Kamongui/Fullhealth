@@ -2,15 +2,16 @@ import React, { useState } from 'react'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ChequeTitle from '../../Component/chequesym/ChequeTitle'
 import { useChequecontext } from '../../Context/ChequeContext'
-import DragList from '../../Component/chequesym/addnewcheque/AddDrag'
+
 import AddCheque from '../../Component/chequesym/addnewcheque/AddCheque'
+import { Outlet, Link } from 'react-router-dom';
 
 const Cheque = () => {
   const [searchBy, setSearchBy] = useState('')
   const [search, setSearch] = useState('')
   const [adddrag, setAdddrag] = useState(false)
   const [addcheque,setAddcheque] = useState(false)
-  const { isLoading, error, dragdata, totalPrice, setTotalPrice } = useChequecontext()
+  const { isLoading, error, totalPrice, setTotalPrice } = useChequecontext()
   
   // variable to save the cheque amount
   const finalprice = totalPrice.reduce((total, item)=>{
@@ -36,18 +37,21 @@ const Cheque = () => {
         {(adddrag && !addcheque)?
         <div className='chequecomponent'>
           <div>Product List</div>
-          {dragdata.map((data,test) => 
-            <div key={data.id}>
-              <DragList {...data} />
-            </div>
-          )}
+          <div>
+            <Link to='/cheque'>Drag</Link>
+            <Link to='/cheque/choosesalary'>Salary</Link>
+            <Link to='/cheque/chooseothers'>Others</Link>
+            <Outlet />
+          </div>
+          
           <div>
             {finalprice}
           </div>
           <button onClick={addbtn}>Add</button>
-          <br />
-          <button onClick={()=>setTotalPrice([])}>Clear</button>
-          <button onClick={closeMenu}>Close</button>
+          <div>
+            <button onClick={()=>setTotalPrice([])}>Clear</button>
+            <button onClick={closeMenu}>Close</button>
+          </div>
         </div>:(adddrag && addcheque)?
           <div className='chequecomponent'>
             <AddCheque 

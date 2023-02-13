@@ -1,7 +1,7 @@
 import React from 'react'
 import { useChequecontext } from '../../../Context/ChequeContext'
 
-const DragList = ( {id, DragName, Price} ) => {
+const AddDrag = ( {id, DragName, Price} ) => {
   const { inDrag, deDrag, rmDrag, getItem } = useChequecontext()
 
   return (
@@ -23,4 +23,4 @@ const DragList = ( {id, DragName, Price} ) => {
   )
 }
 
-export default DragList
+export default AddDrag

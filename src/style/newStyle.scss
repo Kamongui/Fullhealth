@@ -91,6 +91,10 @@ li{
   position: relative;
 }
 .chequecomponent{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
   position: absolute;
   margin-top: -5rem;
   width: 30vw;

@@ -30,35 +30,8 @@
     {
       "id": 4,
       "Status": "-",
-      "Date": "2023-02-06",
-      "Payee": "Tom",
-      "PaidDate": "-",
-      "Amount": 1000,
-      "Signatory": "-"
-    },
-    {
-      "id": 5,
-      "Status": "-",
-      "Date": "2023-02-08",
-      "Payee": "Tom",
-      "PaidDate": "-",
-      "Amount": 2000,
-      "Signatory": "-"
-    },
-    {
-      "id": 6,
-      "Status": "-",
-      "Date": "2023-02-14",
-      "Payee": "Umi",
-      "PaidDate": "-",
-      "Amount": 400,
-      "Signatory": "-"
-    },
-    {
-      "id": 7,
-      "Status": "-",
-      "Date": "2023-02-07",
-      "Payee": "Tom",
+      "Date": "2023-02-13",
+      "Payee": "Tommy",
       "Amount": 1000,
       "Signatory": ""
     }
@@ -85,7 +58,7 @@
       "Price": 400
     }
   ],
-  "suppiler": [
+  "supplier": [
     {
       "id": 1,
       "SupplierName": "Company1"
