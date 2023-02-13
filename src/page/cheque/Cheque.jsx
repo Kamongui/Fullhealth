@@ -37,13 +37,12 @@ const Cheque = () => {
         {(adddrag && !addcheque)?
         <div className='chequecomponent'>
           <div>Product List</div>
-          <div>
+          <div className='subheader'>
             <Link to='/cheque'>Drag</Link>
             <Link to='/cheque/choosesalary'>Salary</Link>
             <Link to='/cheque/chooseothers'>Others</Link>
-            <Outlet />
           </div>
-          
+          <Outlet />
           <div>
             {finalprice}
           </div>

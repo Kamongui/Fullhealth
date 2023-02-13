@@ -102,7 +102,6 @@ li{
   height: 100vh;
   background-color: pink;
 }
-
 /* for Cheque.jsx */
 .chequeForm{
   display: flex;
@@ -110,7 +109,18 @@ li{
   justify-content: center;
   align-items:center;
 }
-
 .chequePDF{
   border: 3px solid yellow ;
+}
+.subheader{
+  > a {
+    padding: 10px;
+  }
+}
+.productlist{
+  text-align: center;
+  border: 1px solid skyblue;
+  th,td {
+    border: 1px solid skyblue;
+  }
 }

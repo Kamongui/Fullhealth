@@ -5,10 +5,10 @@ const AddDrag = ( {id, DragName, Price} ) => {
   const { inDrag, deDrag, rmDrag, getItem } = useChequecontext()
 
   return (
-    <div>
-      <label htmlFor={id}>{DragName}</label>
-      <span> {Price} </span>
-      <span>
+    <tr>
+      <td>{DragName}</td>
+      <td> {Price} </td>
+      <td>
         {(getItem(id) === 0)?
           <button onClick={()=>inDrag(id,Price)}>Add</button>:
           <span>
@@ -18,8 +18,8 @@ const AddDrag = ( {id, DragName, Price} ) => {
             <button onClick={()=>rmDrag(id)}>Remove</button>
           </span>
           }
-      </span>
-    </div>
+      </td>
+    </tr>
   )
 }
 

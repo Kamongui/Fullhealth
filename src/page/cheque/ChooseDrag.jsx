@@ -5,13 +5,21 @@ import AddDrag from '../../Component/chequesym/addnewcheque/AddDrag'
 const ChooseDrag = () => {
   const { dragData } = useChequecontext()
   return (
-    <div>
-      {dragData.map((data) => 
-            <div key={data.id}>
-              <AddDrag {...data} />
-            </div>
-          )}
-    </div>
+    <table className='productlist'>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {dragData.map((data) => 
+          <AddDrag key={data.id} {...data} />
+        )}
+      </tbody>
+      
+    </table>
   )
 }
 

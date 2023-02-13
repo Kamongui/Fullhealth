@@ -5,7 +5,7 @@ import { TableRow } from '@mui/material';
 import { useChequecontext } from '../../Context/ChequeContext';
 import { updateCheque, deleteCheque } from '../../api/fetchData'
 
-const getToday = JSON.stringify(new Date());
+
 
 const ChequeContent = ({ _id,id, Status, Date, Payee, PaidDate, Amount, Signatory }) => {
   const [date, setDate] = useState(Date)

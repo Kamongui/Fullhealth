@@ -11,7 +11,6 @@ import { useChequecontext } from '../../Context/ChequeContext';
 
 const ChequeTitle = ({search,searchBy}) => {
   const { chequeData } = useChequecontext()
-  console.log(chequeData)
   // used to choose search title
   // let newData
   // if(searchBy === 'Payee'){
@@ -29,7 +28,7 @@ const ChequeTitle = ({search,searchBy}) => {
             <TableRow>
               <TableCell>id</TableCell>
               <TableCell align="center">Status</TableCell>
-              <TableCell align="center">Date</TableCell>
+              <TableCell align="center">Date<br /><span style={{backgroundColor:"yellow"}}>modify date format</span></TableCell>
               <TableCell align="center">Payee</TableCell>
               <TableCell align="center">Amount</TableCell>
               <TableCell align="center">Signatory</TableCell>
