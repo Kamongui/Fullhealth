@@ -11,6 +11,7 @@ import { useChequecontext } from '../../Context/ChequeContext';
 
 const ChequeTitle = ({search,searchBy}) => {
   const { chequeData } = useChequecontext()
+  console.log(chequeData)
   // used to choose search title
   // let newData
   // if(searchBy === 'Payee'){

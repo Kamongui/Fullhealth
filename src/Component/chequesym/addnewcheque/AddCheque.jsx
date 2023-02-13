@@ -8,7 +8,7 @@ const Cheque = ({finalprice,setAdddrag,setAddcheque}) => {
   
   const [date,setDate] = useState([])
   const [to,setTo] = useState('')
-  const [signatory,setSignatory] = useState('')
+  const [signatory,setSignatory] = useState('-')
   const [amount,setAmount] = useState(finalprice)
   
   const {chequeData, mutate, setTotalPrice } = useChequecontext()
@@ -17,7 +17,7 @@ const Cheque = ({finalprice,setAdddrag,setAddcheque}) => {
 
   const handlesubmit = async (e) =>{
     e.preventDefault();
-    const newdata = {"id":chequeData.at(-1).id+1,"Status":"-","Date":date,"Payee":to, "Amount":amount,"Signatory":signatory};
+    const newdata = {"id":chequeData.at(-1).id+1,"Status":"-","Date":date,"Payee":to, "Amount":amount,"Signatory":signatory,"PaidDate":"-"};
     try{
       await mutate(
         createNewcheque(newdata, chequeData),

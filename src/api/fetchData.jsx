@@ -31,8 +31,8 @@ export const createNewcheque = async (newdata, olddata) => {
 }
 
 //update the info of cheque
-export const updateCheque = async (id, newdata) => {
-  const res = await fetchData.put(`${chequeEndpt}${id}`,newdata)
+export const updateCheque = async (_id, newdata) => {
+  const res = await fetchData.patch(`${chequeEndpt}/${_id}`,newdata)
   return res.data
 } 
 // export const updateCheque = async (id, newdata) => {

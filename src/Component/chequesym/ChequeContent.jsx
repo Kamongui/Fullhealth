@@ -7,7 +7,7 @@ import { updateCheque, deleteCheque } from '../../api/fetchData'
 
 const getToday = JSON.stringify(new Date());
 
-const ChequeContent = ({ id, Status, Date, Payee, PaidDate, Amount, Signatory }) => {
+const ChequeContent = ({ _id,id, Status, Date, Payee, PaidDate, Amount, Signatory }) => {
   const [date, setDate] = useState(Date)
   const [to, setTo] = useState(Payee)
   const [amount, setAmount] = useState(Amount)
@@ -17,15 +17,12 @@ const ChequeContent = ({ id, Status, Date, Payee, PaidDate, Amount, Signatory })
   const [status, setStatus] = useState(Status)
   const { chequeData, mutate, setPrintData} = useChequecontext()
 
+  // mutation fn not yet finish
   const doneBtn = async () => {
-    const newdata = {"id":id,"Status":"-","Date":date,"Payee":to,"PaidDate":"-","Amount":amount,"Signatory":signatory}
+    const newdata = {"Date":date,"Payee":to,"Amount":amount}
     try{
-      await updateCheque(id, newdata)
-      mutate()
-      // const newChequearray = [...data.filter(data=>data.id !==id), newdata]
-      //sort function not yet finish
-      // const finalarray = newChequearray.sort((a,b) => (a.id - b.id))
-      // setData(finalarray)
+      await updateCheque(_id, newdata)
+      mutate()  //need to modify
       setEdit(false)
     } catch (err) {
       console.log(err)
@@ -36,17 +33,18 @@ const ChequeContent = ({ id, Status, Date, Payee, PaidDate, Amount, Signatory })
   }
   const cancelBtn = () => {
     setEdit(false)
+    setDate(Date)
+    setTo(Payee)
+    setAmount(Amount)
+    setSignatory(Signatory)
   }
 
   // problems occurs
   const deleteBtn = async () =>{
-    const newdata = {"id":id,"Status":"Paid","Date":date,"Payee":to,"PaidDate":getToday,"Amount":amount,"Signatory":signatory}
+    const newdata = {"Status":"Paid","PaidDate":getToday}
     try{
-      await updateCheque(id, newdata)
-      const newChequearray = [...data.filter(data=>data.id !==id), newdata]
-      //sort function not yet finish
-      const finalarray = newChequearray.sort((a,b) => (a.id - b.id))
-      setData(finalarray)
+      await updateCheque(_id, newdata)
+      mutate()
       setActivedel(!activedel)
     } catch (err) {
       console.log(err)
