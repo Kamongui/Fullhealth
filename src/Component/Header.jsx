@@ -8,10 +8,10 @@ const Header = () => {
       <nav>
         <ul>
           <li><Link to='/'>Home</Link></li>
-          <li><Link to='/drag'>Drag List</Link></li>
-          <li><Link to='/supplier'>Supplier List</Link></li>
-          <li><Link to='/cheque'>Cheque</Link></li>
-          <li><Link to='/register'>Sign-up</Link></li>
+          <li><Link to='/dash/drag'>Drag List</Link></li>
+          <li><Link to='/dash/supplier'>Supplier List</Link></li>
+          <li><Link to='/dash/cheque'>Cheque</Link></li>
+          <li><Link to='/'>Sign-up</Link></li>
           {/* not yet produce */}
           {/* <li><Link to='/suppiler'>Suppiler List</Link></li> */}
         </ul>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import ChequeTitle from '../../Component/chequesym/ChequeTitle'
-import { useChequecontext } from '../../Context/ChequeContext'
+import ChequeTitle from '../../../Component/chequesym/ChequeTitle'
+import { useChequecontext } from '../../../Context/ChequeContext'
 
-import AddCheque from '../../Component/chequesym/addnewcheque/AddCheque'
+import AddCheque from '../../../Component/chequesym/addnewcheque/AddCheque'
 import { Outlet, Link } from 'react-router-dom';
 
 const Cheque = () => {
@@ -38,9 +38,9 @@ const Cheque = () => {
         <div className='chequecomponent'>
           <div>Product List</div>
           <div className='subheader'>
-            <Link to='/cheque'>Drag</Link>
-            <Link to='/cheque/choosesalary'>Salary</Link>
-            <Link to='/cheque/chooseothers'>Others</Link>
+            <Link to='/dash/cheque'>Drag</Link>
+            <Link to='/dash/cheque/choosesalary'>Salary</Link>
+            <Link to='/dash/cheque/chooseothers'>Others</Link>
           </div>
           <Outlet />
           <div>

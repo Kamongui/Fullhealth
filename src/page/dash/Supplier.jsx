@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useChequecontext } from '../Context/ChequeContext'
+import { useChequecontext } from '../../Context/ChequeContext'
 import {Table} from '@mui/material';
 import {TableBody} from '@mui/material';
 import {TableCell} from '@mui/material';

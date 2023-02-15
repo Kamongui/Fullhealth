@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { useChequecontext } from '../Context/ChequeContext'
+import { useChequecontext } from '../../Context/ChequeContext'
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 
@@ -36,10 +36,11 @@ export default function Drag() {
 
 
   let row =[]
+  let content
   if (dragLoading) {
-    <h1>Loading</h1>
+    content = <h1>Loading</h1>
   } else if (dragError) {
-    <h1>`${dragError.message}`</h1>
+    content = <h1>`${dragError.message}`</h1>
   } else {
     for(let i=0;i<dragData.length;i++){
       let rowData = dragData[i]
@@ -47,17 +48,20 @@ export default function Drag() {
     }
   }
   return (
-    <Box sx={{ height: 400, width: '100%', backgroundColor:'pink' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-        disableSelectionOnClick
-        experimentalFeatures={{ newEditingApi: true }}
-      />
-    </Box>
+    <>
+      <div>{content}</div>
+      <Box sx={{ height: 400, width: '100%', backgroundColor:'pink' }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+          disableSelectionOnClick
+          experimentalFeatures={{ newEditingApi: true }}
+        />
+      </Box>
+    </>
   );
 }
 

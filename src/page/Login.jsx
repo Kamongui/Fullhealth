@@ -18,7 +18,7 @@ const Login = () => {
         <br />
         <Button size='small' variant="contained" onClick={()=>console.log('text')} >Login</Button>
       </form>
-      Do not have an account, <Link to='/register'>Sign-up</Link> here
+      Do not have an account, <Link to='/'>Sign-up</Link> here
     </div>
   )
 }

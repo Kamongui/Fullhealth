@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useReactToPrint } from 'react-to-print'
-import { useChequecontext } from '../../Context/ChequeContext'
+import { useChequecontext } from '../../../Context/ChequeContext'
 
 const PrintPDF = () => {
   const { printData } = useChequecontext()

@@ -23,7 +23,24 @@ body{
   display: flex;
   justify-content: space-between;
   background-color: darkblue;
+  opacity: 0.5;
   z-index: 1;
+  &:hover{
+    opacity: 1;
+  }
+}
+.footer{
+  padding: 1rem;
+  bottom: 0;
+  position: fixed;
+  width: 100vw;
+  height: 3rem;
+  background-color: lightcoral;
+  opacity: 0.5;
+  text-align: center;
+  &:hover{
+    opacity: 1;
+  }
 }
 ul{
   display: flex;

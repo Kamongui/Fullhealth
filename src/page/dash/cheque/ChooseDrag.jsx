@@ -1,6 +1,6 @@
 import React from 'react'
-import { useChequecontext } from '../../Context/ChequeContext'
-import AddDrag from '../../Component/chequesym/addnewcheque/AddDrag'
+import { useChequecontext } from '../../../Context/ChequeContext'
+import AddDrag from '../../../Component/chequesym/addnewcheque/AddDrag'
 
 const ChooseDrag = () => {
   const { dragData } = useChequecontext()

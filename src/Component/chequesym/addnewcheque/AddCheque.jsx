@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useChequecontext } from '../../../Context/ChequeContext'
 import { createNewcheque } from '../../../api/fetchData'
-import { createNewChequeOptions } from '../../../controller/ChequeMutations'
+import { createNewChequeOptions } from '../../../controller/Mutations'
 
 const Cheque = ({finalprice,setAdddrag,setAddcheque}) => {
   const dateRef = useRef()
