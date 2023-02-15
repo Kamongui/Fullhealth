@@ -11,7 +11,7 @@ const Cheque = () => {
   const [search, setSearch] = useState('')
   const [adddrag, setAdddrag] = useState(false)
   const [addcheque,setAddcheque] = useState(false)
-  const { isLoading, error, totalPrice, setTotalPrice } = useChequecontext()
+  const { isLoading, error, totalPrice, setTotalPrice, chequeData } = useChequecontext()
   
   // variable to save the cheque amount
   const finalprice = totalPrice.reduce((total, item)=>{
@@ -63,7 +63,7 @@ const Cheque = () => {
             <br />
             {/* below btn only use in dev env */}
             <button onClick={()=>console.log(finalprice)}>Print cheque amount</button>
-            <button onClick={()=>console.log('finalinfo')}>Print cheque info</button>
+            <button onClick={()=>console.log(chequeData)}>Print cheque info</button>
           </div>:
           null
         }
