@@ -28,7 +28,7 @@ const ChequeTitle = ({search,searchBy}) => {
   // default value
   let test = (a,b) => {a.id - b.id}
   // Sort by id
-  (sortItem.item === 'id' && sortItem.status === true)? (test = (a,b) => a.id - b.id)
+  ((sortItem.item === 'id' && sortItem.status === true)? (test = (a,b) => a.id - b.id)
     :(sortItem.item === 'id' && sortItem.status === false)? (test = (a,b) => b.id - a.id)
       // Sort by Status
       :(sortItem.item === 'Status' && sortItem.status === true)? (test = (a,b) => a.Status - b.Status)
@@ -44,7 +44,7 @@ const ChequeTitle = ({search,searchBy}) => {
                     :(sortItem.item === 'Amount' && sortItem.status === false)? (test = (a,b) => b.Amount - a.Amount)
                       // Sort by Signatory
                       :(sortItem.item === 'Signatory' && sortItem.status === true)? (test = (a,b) => (a.Signatory.toLowerCase() > b.Signatory.toLowerCase())?1:-1)
-                        :(test = (a,b) =>  (a.Signatory.toLowerCase() > b.Signatory.toLowerCase())?-1:1)
+                        :(test = (a,b) =>  (a.Signatory.toLowerCase() > b.Signatory.toLowerCase())?-1:1))
   // End
 
   return (

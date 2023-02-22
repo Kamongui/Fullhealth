@@ -25,6 +25,7 @@ function App() {
             <Route index element={<Register />} />
             <Route path='login' element={<Login />} />
           
+            {/* Protect Route */}
             <Route path='dash' element={<Dashboard />}>
               <Route index element={<Welcome />}/>
               <Route path='cheque' element={<Cheque/>}>

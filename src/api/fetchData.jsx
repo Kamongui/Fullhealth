@@ -7,7 +7,7 @@ import axios from "axios";
 // http://localhost:4000
 
 // database for cheque info
-const fetchData = axios.create({
+export const fetchData = axios.create({
   baseURL:'http://localhost:4000'
 })
 

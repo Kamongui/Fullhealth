@@ -20,12 +20,12 @@ preload(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ContextProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <ContextProvider>
         <Routes>
           <Route path='/*' element={<App />} />
         </Routes>
-      </BrowserRouter>
-    </ContextProvider>
+      </ContextProvider>
+    </BrowserRouter>
   </React.StrictMode>,
 )

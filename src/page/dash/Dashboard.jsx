@@ -1,12 +1,17 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import useAuth from '../../hooks/useAuth'
+import { useLocation, Navigate, Outlet } from 'react-router-dom'
 
 const Dashboard = () => {
+  const { auth } = useAuth()
+  const location = useLocation()
   return (
-    <div style={{width:"100vw"}}>
-      Dashboard
-      <Outlet />
-    </div>
+    auth?.userName
+      ?<div style={{width:"100vw"}}>
+        <Outlet />
+      </div>
+      : <p>Not authorized</p>
+      // <Navigate to='/login' state={{ from: location }} replace />
   )
 }
 
