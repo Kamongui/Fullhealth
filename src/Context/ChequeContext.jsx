@@ -38,7 +38,6 @@ export function ContextProvider({children}) {
   } = useSWR(supplierEndpt, getSupplierData, {
     onSuccess: data => data.sort((a,b)=> a.id - b.id)
   });
-
   // Control the price add into check info
   const [totalPrice, setTotalPrice] = useState([]);
   // Selfuse, useless, can del
@@ -47,53 +46,7 @@ export function ContextProvider({children}) {
   const [printData, setPrintData] = useState([]);
   const [quantity,setQuantity] = useState(0);
 
-  // line 49 - 93, For ChooseDrag fn
-  const getItem = (id) => {
-    return totalPrice.find(item=>item.id === id)?.quantity || 0
-  }
-  const inDrag = (id,Price) => {
-    setTotalPrice(current=>{
-      if(current.find(item=>item.id === id) == null) {
-        return [...current,
-        {id:id,price:Price,quantity:+1}]
-      } else {
-        return current.map(item=>{
-          if(item.id===id){
-            return {...item,quantity:item.quantity+1}
-          } else {
-            return item
-          }
-        })
-      }
-    })
-  }
-  const deDrag = (id) => {
-    setTotalPrice(current=>{
-      if(current.find(item=>item.id === id)?.quantity === 1){
-        return current.filter(item=>
-          item.id !== id
-        )} else {
-        return current.map(item=>{
-          if(item.id===id){
-            return {...item,quantity:item.quantity-1}
-          } else {
-            return item
-          }
-        })
-      }
-    })
-  }
-  const rmDrag = (id) => {
-    setTotalPrice(current=>{
-      if(current.find(item=>item.id === id)?.quantity){
-        return current.filter(item=>
-          item.id !== id
-        )
-      }
-    })
-  }
-
-
+  const [auth, setAuth] = useState('')
   // Context list for share to global
   const value = {
     chequeData   , isLoading,
@@ -105,9 +58,8 @@ export function ContextProvider({children}) {
     print        , setPrint,
     totalPrice   , setTotalPrice,
     quantity     , setQuantity,
-    inDrag       , deDrag,
-    rmDrag       , getItem,
-    printData    , setPrintData
+    printData    , setPrintData,
+    auth         , setAuth
   }
 
   return (

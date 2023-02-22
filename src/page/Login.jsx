@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import useAuth from '../hooks/useAuth';
+import { useChequecontext } from '../Context/ChequeContext'
 import { fetchData } from '../api/fetchData';
 
 const Login = () => {
-  const { auth, setAuth } = useAuth()
+  const { setAuth } = useChequecontext()
 
   const nameRef = useRef()
   const errRef = useRef()
@@ -36,7 +36,7 @@ const Login = () => {
       console.log(response)
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles
-      // setAuth({ userName, passWord, roles, accessToken })
+      setAuth({ userName, passWord, roles, accessToken })
       setUserName('')
       setPassWord('')
     } catch (err) {

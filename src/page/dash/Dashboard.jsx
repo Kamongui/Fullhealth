@@ -1,9 +1,9 @@
 import React from 'react'
-import useAuth from '../../hooks/useAuth'
+import { useChequecontext } from '../../Context/ChequeContext'
 import { useLocation, Navigate, Outlet } from 'react-router-dom'
 
 const Dashboard = () => {
-  const { auth } = useAuth()
+  const { auth } = useChequecontext()
   const location = useLocation()
   return (
     auth?.userName
