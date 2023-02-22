@@ -26,25 +26,50 @@ const ChequeTitle = ({search,searchBy}) => {
   
   // Table Sorting fn
   // default value
+
+  // Sort fn
   let test = (a,b) => {a.id - b.id}
+  switch (sortItem.item) {
+    case 'id':
+      (sortItem.status) ?(test = (a,b) => a.id - b.id) :(test = (a,b) => b.id - a.id)
+      break
+    case 'Status':
+      (sortItem.status) ?(test = (a,b) => a.Status - b.Status) :(test = (a,b) => b.Status - a.Status)
+      break
+    case 'Date':
+      (sortItem.status) ?(test = (a,b) => a.Date - b.Date) :(test = (a,b) => b.Date - a.Date)
+      break
+    case 'Payee':
+      (sortItem.status) ? (test = (a,b) => (a.Payee.toLowerCase() > b.Payee.toLowerCase())?1:-1) :(test = (a,b) => (a.Payee.toLowerCase() > b.Payee.toLowerCase())?-1:1)
+      break
+    case 'Amount':
+      (sortItem.status) ?(test = (a,b) => a.Amount - b.Amount) :(test = (a,b) => b.Amount - a.Amount)
+      break
+    case 'Signatory':
+      (sortItem.status) ?(test = (a,b) => (a.Signatory.toLowerCase() > b.Signatory.toLowerCase())?1:-1) :(test = (a,b) =>  (a.Signatory.toLowerCase() > b.Signatory.toLowerCase())?-1:1)
+      break
+    default:
+      throw Error
+        .then(console.log(Error))
+  }
   // Sort by id
-  ((sortItem.item === 'id' && sortItem.status === true)? (test = (a,b) => a.id - b.id)
-    :(sortItem.item === 'id' && sortItem.status === false)? (test = (a,b) => b.id - a.id)
-      // Sort by Status
-      :(sortItem.item === 'Status' && sortItem.status === true)? (test = (a,b) => a.Status - b.Status)
-        :(sortItem.item === 'Status' && sortItem.status === false)? (test = (a,b) => b.Status - a.Status)
-          // Sort by Date
-          :(sortItem.item === 'Date' && sortItem.status === true)? (test = (a,b) => a.Date - b.Date)
-            :(sortItem.item === 'Date' && sortItem.status === false)? (test = (a,b) => b.Date - a.Date)
-              // Sort by Payee
-              :(sortItem.item === 'Payee' && sortItem.status === true)? (test = (a,b) => (a.Payee.toLowerCase() > b.Payee.toLowerCase())?1:-1)
-                :(sortItem.item === 'Payee' && sortItem.status === false)? (test = (a,b) => (a.Payee.toLowerCase() > b.Payee.toLowerCase())?-1:1)
-                  // Sort by Amount
-                  :(sortItem.item === 'Amount' && sortItem.status === true)? (test = (a,b) => a.Amount - b.Amount)
-                    :(sortItem.item === 'Amount' && sortItem.status === false)? (test = (a,b) => b.Amount - a.Amount)
-                      // Sort by Signatory
-                      :(sortItem.item === 'Signatory' && sortItem.status === true)? (test = (a,b) => (a.Signatory.toLowerCase() > b.Signatory.toLowerCase())?1:-1)
-                        :(test = (a,b) =>  (a.Signatory.toLowerCase() > b.Signatory.toLowerCase())?-1:1))
+  // ((sortItem.item === 'id' && sortItem.status === true)? (test = (a,b) => a.id - b.id)
+  //   :(sortItem.item === 'id' && sortItem.status === false)? (test = (a,b) => b.id - a.id)
+  //     // Sort by Status
+  //     :(sortItem.item === 'Status' && sortItem.status === true)? (test = (a,b) => a.Status - b.Status)
+  //       :(sortItem.item === 'Status' && sortItem.status === false)? (test = (a,b) => b.Status - a.Status)
+  //         // Sort by Date
+  //         :(sortItem.item === 'Date' && sortItem.status === true)? (test = (a,b) => a.Date - b.Date)
+  //           :(sortItem.item === 'Date' && sortItem.status === false)? (test = (a,b) => b.Date - a.Date)
+  //             // Sort by Payee
+  //             :(sortItem.item === 'Payee' && sortItem.status === true)? (test = (a,b) => (a.Payee.toLowerCase() > b.Payee.toLowerCase())?1:-1)
+  //               :(sortItem.item === 'Payee' && sortItem.status === false)? (test = (a,b) => (a.Payee.toLowerCase() > b.Payee.toLowerCase())?-1:1)
+  //                 // Sort by Amount
+  //                 :(sortItem.item === 'Amount' && sortItem.status === true)? (test = (a,b) => a.Amount - b.Amount)
+  //                   :(sortItem.item === 'Amount' && sortItem.status === false)? (test = (a,b) => b.Amount - a.Amount)
+  //                     // Sort by Signatory
+  //                     :(sortItem.item === 'Signatory' && sortItem.status === true)? (test = (a,b) => (a.Signatory.toLowerCase() > b.Signatory.toLowerCase())?1:-1)
+  //                       :(test = (a,b) =>  (a.Signatory.toLowerCase() > b.Signatory.toLowerCase())?-1:1))
   // End
 
   return (
