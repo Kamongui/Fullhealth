@@ -8,7 +8,6 @@ const Home = () => {
   const dispatch = useDispatch();
   return (
     <div>
-      Home
       <div>
         <div>Testing Counter</div>
         <div>{count}</div>

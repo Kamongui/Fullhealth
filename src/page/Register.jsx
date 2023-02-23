@@ -30,9 +30,11 @@ const Register = () => {
   const [success, setSuccess] =useState(false)
 
   // when reder the page, automatic focus on the name input
-  useEffect(()=>{
-    nameRef.current.focus()
-  },[])
+  // if (!auth.userName) {
+  //   useEffect(()=>{
+  //     nameRef.current.focus()
+  //   },[])
+  // }
 
   // For validation input info
   useEffect(()=>{
@@ -115,7 +117,6 @@ const Register = () => {
           <span>
             If already have an account, <Link to='/login'>Sign-in</Link> here.
           </span>
-          
         </div>
       }
     </>

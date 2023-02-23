@@ -1,14 +1,18 @@
-#Installation
-###npm i
+##Installation
+```
+npm i
+```
 
-#Run the project
-##Open new terminal, enter command
-###npm run dev
+##Run the project
+Open new terminal, enter command
+```
+npm run dev
+```
 
-#Open a json-server to get data
+<!-- #Open a json-server to get data
 ##For Opening a localhost port 3500 of Json-server
 ##Open new terminal, use the below command
-###npx json-server -p 3500 -w ./data/data.json
+###npx json-server -p 3500 -w ./data/data.json -->
 
 
 Selfuse

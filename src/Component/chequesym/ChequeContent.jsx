@@ -107,7 +107,7 @@ const ChequeContent = ({ _id,id, Status, Date, Payee, PaidDate, Amount, Signator
         <input type="checkbox" onChange={()=>console.log(id)} />
       </TableCell>
       <TableCell align="center">
-        <Link to='/print'>
+        <Link to='/dash/print'>
           <button onClick={previewBtn} >Pre-view</button>
         </Link>
       </TableCell>

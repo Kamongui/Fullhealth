@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from 'react'
 import { useState, useEffect } from 'react'
 import useSWR from 'swr'
-import { getChequeData, getDragData, getSupplierData, chequeEndpt, dragEndpt, supplierEndpt } from '../api/fetchData';
+import { getChequeData, getDragData, getSupplierData, getPatientData, getEmployeeData, chequeEndpt, dragEndpt, supplierEndpt, patientEndpt, employeeEndpt } from '../api/fetchData';
 
 const ChequeContext = createContext()
 
@@ -38,6 +38,24 @@ export function ContextProvider({children}) {
   } = useSWR(supplierEndpt, getSupplierData, {
     onSuccess: data => data.sort((a,b)=> a.id - b.id)
   });
+  // For PatientInfo
+  const {
+    isLoading: patientLoading,
+    error: patientError,
+    data: patientData,
+    mutate: patientMutate
+  } = useSWR(patientEndpt, getPatientData, {
+    onSuccess: data => data.sort((a,b)=> a.id - b.id)
+  });
+  // For Supplier
+  const {
+    isLoading: employeeLoading,
+    error: employeeError,
+    data: employeeData,
+    mutate: employeeMutate
+  } = useSWR(employeeEndpt, getEmployeeData, {
+    onSuccess: data => data.sort((a,b)=> a.id - b.id)
+  });
   // Control the price add into check info
   const [totalPrice, setTotalPrice] = useState([]);
   // Selfuse, useless, can del
@@ -55,6 +73,10 @@ export function ContextProvider({children}) {
     dragError    , dragMutate,
     supplierData , supplierLoading,
     supplierError, supplierMutate,
+    patientData     , patientLoading,
+    patientError    , patientMutate,
+    employeeData , employeeLoading,
+    employeeError, employeeMutate,
     print        , setPrint,
     totalPrice   , setTotalPrice,
     quantity     , setQuantity,

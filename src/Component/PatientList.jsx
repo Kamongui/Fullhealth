@@ -1,23 +1,23 @@
 import { TableCell } from '@mui/material';
 import { TableRow } from '@mui/material';
 
-const SupplierList = ({ id, SupplierName }) => {
+const PatientList = ({ id, PatientName }) => {
   return (
     <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
       <TableCell component="th" scope="row">
         {id}
       </TableCell>
       <TableCell align="center">
-        {SupplierName}
+        {PatientName}
       </TableCell>
       <TableCell align="center">
-      Ac No
+        XXX
       </TableCell>
       <TableCell align="center">
-        Product
+        XXX
       </TableCell>
     </TableRow>
   )
 }
 
-export default SupplierList
+export default PatientList

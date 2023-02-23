@@ -14,6 +14,8 @@ export const fetchData = axios.create({
 export const chequeEndpt = '/cheque';
 export const dragEndpt = '/drag';
 export const supplierEndpt = '/supplier';
+export const patientEndpt = '/patient';
+export const employeeEndpt = '/employee';
 
 
 //For cheque data
@@ -54,5 +56,18 @@ export const getDragData = async () => {
 //Get the supplier's data
 export const getSupplierData = async () => {
   const res = await fetchData.get(supplierEndpt)
+  return res.data
+}
+// For Patient data
+//Get the Patient's data
+export const getPatientData = async () => {
+  const res = await fetchData.get(patientEndpt)
+  return res.data
+}
+
+// For Supplier data
+//Get the supplier's data
+export const getEmployeeData = async () => {
+  const res = await fetchData.get(employeeEndpt)
   return res.data
 }
